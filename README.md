@@ -272,7 +272,7 @@ HTML reports provide a straightforward way to view test results with basic infor
 #### Generating HTML Reports
 ```bash
 # Run tests with HTML report generation
-cd ssqatest
+cd demostore_automation
 python3 -m pytest tests --html=reports/report.html
 
 # View the report
