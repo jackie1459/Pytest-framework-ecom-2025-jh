@@ -10,8 +10,8 @@ class HomePage(HomePageLocators):
         self.sl = SeleniumExtended(driver)
 
     def go_to_home_page(self):
-        base_url = MainConfigs.get_base_url()
-        self.driver.get(base_url)
+        base_url = MainConfigs.get_base_url() #gets the base url from env variable & returns 
+        self.driver.get(base_url) #go to that url
 
     def click_first_add_to_cart_button(self):
         self.sl.wait_and_click(self.ADD_TO_CART_BTN)
