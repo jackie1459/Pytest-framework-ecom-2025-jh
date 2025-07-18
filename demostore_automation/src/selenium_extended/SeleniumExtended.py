@@ -118,7 +118,7 @@ class SeleniumExtended:
 
 
 
-    def wait_until_element_contains_text(self, locator, text, timeout=None):
+def wait_until_element_contains_text(self, locator, text, timeout=None):
         timeout = timeout if timeout else self.default_timeout
 
         WebDriverWait(self.driver, timeout).until(
@@ -152,7 +152,7 @@ class SeleniumExtended:
 
 
 
-    def wait_until_element_is_visible(self, locator_or_element, timeout=None):
+def wait_until_element_is_visible(self, locator_or_element, timeout=None):
         timeout = timeout if timeout else self.default_timeout
 
         """
@@ -201,7 +201,7 @@ class SeleniumExtended:
 
 
 
-    def wait_and_get_elements(self, locator, timeout=None, err=None):
+def wait_and_get_elements(self, locator, timeout=None, err=None):
         timeout = timeout if timeout else self.default_timeout
         err = err if err else f"Unable to find elements located by '{locator}'," \
                               f"after timeout of {timeout}"
@@ -242,7 +242,7 @@ class SeleniumExtended:
 
 
 
-    def wait_and_select_dropdown(self, locator, to_select, select_by='visible_text'):
+def wait_and_select_dropdown(self, locator, to_select, select_by='visible_text'):
         """
 
         :param locator:
@@ -282,16 +282,16 @@ class SeleniumExtended:
     """
 
 
-        select_element = self.wait_until_element_is_visible(locator)
-        select = Select(select_element)
-        if select_by.lower() == 'visible_text':
-            select.select_by_visible_text(to_select)
-        elif select_by.lower() == 'index':
-            select.select_by_index(to_select)
-        elif select_by.lower() == 'value':
-            select.select_by_value(to_select)
-        else:
-            raise Exception(f"Invalid option for 'to_select' parameter. Valid values are 'visible_text', 'index', or value 'value'.")
+select_element = self.wait_until_element_is_visible(locator)
+select = Select(select_element)
+if select_by.lower() == 'visible_text':
+    select.select_by_visible_text(to_select)
+elif select_by.lower() == 'index':
+    select.select_by_index(to_select)
+elif select_by.lower() == 'value':
+    select.select_by_value(to_select)
+else:
+    raise Exception(f"Invalid option for 'to_select' parameter. Valid values are 'visible_text', 'index', or value 'value'.")
 
    
    
@@ -299,7 +299,8 @@ class SeleniumExtended:
         timeout = timeout if timeout else self.default_timeout
         elm = self.wait_until_element_is_visible(locator, timeout)
         element_text = elm.text
-         """
+        
+"""
     Waits for the element to become visible and returns its text content.
 
     This method waits for the element, identified by the given locator, to be visible within the specified
@@ -323,6 +324,6 @@ class SeleniumExtended:
         # This will wait up to 10 seconds for the 'div#message' element to become visible and then return its text.
     """
 
-        return element_text
+return element_text
 
 
