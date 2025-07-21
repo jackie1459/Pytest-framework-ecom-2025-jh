@@ -144,10 +144,6 @@ def wait_until_element_contains_text(self, locator, text, timeout=None):
 
     Raises:
         TimeoutException: If the element does not contain the text within the given timeout period.
-
-    Example:
-        wait_until_element_contains_text('div#message', 'Success', timeout=15)
-        # This will wait up to 15 seconds for the 'div#message' element to contain the text 'Success'.
     """
 
 
@@ -202,11 +198,7 @@ def wait_until_element_is_visible(self, locator_or_element, timeout=None):
 
 
 def wait_and_get_elements(self, locator, timeout=None, err=None):
-        timeout = timeout if timeout else self.default_timeout
-        err = err if err else f"Unable to find elements located by '{locator}'," \
-                              f"after timeout of {timeout}"
-        
-        """
+    """
     Waits for the elements to be visible and returns them once they are located.
 
     This method waits for the elements, identified by the given locator, to be present and visible 
@@ -226,11 +218,12 @@ def wait_and_get_elements(self, locator, timeout=None, err=None):
 
     Raises:
         TimeoutException: If the elements are not visible within the specified timeout period.
-
-    Example:
-        wait_and_get_elements('div.item', timeout=10, err='Items not found on the page')
-        # This will wait up to 10 seconds for the elements matching 'div.item' to become visible and return them.
     """
+
+        timeout = timeout if timeout else self.default_timeout
+        err = err if err else f"Unable to find elements located by '{locator}'," \
+                              f"after timeout of {timeout}"
+    
         try:
             elements = WebDriverWait(self.driver, timeout).until(
                 EC.visibility_of_all_elements_located(locator),
