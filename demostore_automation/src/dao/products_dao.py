@@ -19,7 +19,22 @@ class ProductsDAO:
         logger.info(f"Getting random products from db. qty= {qty}")
         sql = f"""SELECT ID, post_title, post_name FROM {self.db_helper.database}.{self.db_helper.table_prefix}posts 
         WHERE post_type = 'product' LIMIT 500;"""
+    
 
         rs_sql = self.db_helper.execute_select(sql)
 
         return random.sample(rs_sql, int(qty))
+
+
+    def get_product_by_id(self, product_id):
+
+        sql = f"""SELECT * FROM {self.db_helper.database}.{self.db_helper.table_prefix}posts 
+                WHERE post_type = 'product' AND ID = {product_id};
+                """
+
+        return self.db_helper.execute_select(sql)
+
+
+
+
+

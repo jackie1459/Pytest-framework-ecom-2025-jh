@@ -1,4 +1,4 @@
-
+import logging as logger
 
 from demostore_automation.src.selenium_extended.SeleniumExtended import SeleniumExtended #importing the folder.thefile
 from demostore_automation.src.configs.MainConfigs import MainConfigs #getting the base URL
@@ -49,9 +49,20 @@ class ProductPage(ProductPageLocators):
         # This will retrieve and return the name of the product displayed on the page.
     """
 
-    
+    def get_url_of_displayed_main_image(self):
+       
+
+       image_element = self.sl.wait_until_element_is_visible(self.PRODUCT_IMAGE_MAIN)
+       image_url = image_element.get_attribute('src')
+       return image_url
 
 
+    def get_url_of_displayed_alternate_images(self):
+        image_elements = self.sl.wait_and_get_elements(self.PRODUCT_ALTERNATE_IMAGES, locator, timeout=None, err="Unable to find alternate images for a product.")
+        all_urls = [element.get_attribute('src') for element in image_elements]
+
+        
+        logger.debug(f"All alternate image urls: {alternate_urls}")
 
 
 
